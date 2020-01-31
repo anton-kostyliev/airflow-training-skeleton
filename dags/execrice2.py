@@ -5,6 +5,7 @@ from airflow.models import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
+from pendulum import Pendulum
 
 args = {
     'owner': 'Anton Kostyliev',
@@ -18,8 +19,8 @@ dag = DAG(
     dagrun_timeout=timedelta(minutes=60),
 )
 
-def print_execution_date(execution_date, **context):
-    print("Execution date: " + execution_date)
+def print_execution_date(execution_date : Pendulum, **context):
+    print("Execution date: " + execution_date.to_iso8601_string())
 
 with dag as dag:
     execution_date = PythonOperator(
