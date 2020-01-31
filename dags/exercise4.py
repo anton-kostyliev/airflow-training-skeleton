@@ -20,7 +20,9 @@ dag = DAG(
 
 with dag as dag:
     copy_task = PostgresToGoogleCloudStorageOperator(
+        task_id='psql_to_gcp',
         postgres_conn_id='gdd',
         sql='SELECT * FROM land_registry_price_paid_uk WHERE postcode = \'TQ1 1RY\'',
-        bucket='gdd-tetetetetetetete'
+        bucket='gdd-tetetetetetetete',
+        filename='mydata'
     )
