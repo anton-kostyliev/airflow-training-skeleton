@@ -19,7 +19,7 @@ dag = DAG(
 )
 
 def print_execution_date(execution_date, **context):
-    print("Execution date: {{ execution_date }}")
+    print("Execution date: " + execution_date)
 
 with dag as dag:
     execution_date = PythonOperator(
