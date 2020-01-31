@@ -22,7 +22,12 @@ def print_execution_date(execution_date, **context):
     print("Execution date: {{ execution_date }}")
 
 with dag as dag:
-    execution_date = PythonOperator(task_id="print_execution_date", python_callable=print_execution_date)
+    execution_date = PythonOperator(
+        task_id="print_execution_date",
+        python_callable=print_execution_date,
+        provide_context=True
+    )
+
     sleep1 = BashOperator(task_id='sleep1', bash_command="sleep 1")
     sleep5 = BashOperator(task_id='sleep5', bash_command="sleep 5")
     sleep10 = BashOperator(task_id='sleep10', bash_command="sleep 10")
