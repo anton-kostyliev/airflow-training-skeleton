@@ -4,6 +4,7 @@ import airflow
 from airflow.models import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
+from airflow.utils.trigger_rule import TriggerRule
 from pendulum import Pendulum
 
 args = {
@@ -50,6 +51,6 @@ with dag as dag:
     bob = DummyOperator(task_id="bob")
     alice = DummyOperator(task_id="alice")
     joe = DummyOperator(task_id="joe")
-    end = DummyOperator(task_id="finish_task")
+    end = DummyOperator(task_id="finish_task", trigger_rule=TriggerRule.NONE_FAILED)
 
 execution_date >> branching >> [bob, alice, joe] >> end
