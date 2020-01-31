@@ -12,9 +12,9 @@ args = {
 }
 
 dag = DAG(
-    dag_id='exercise_1',
+    dag_id='exercise_2',
     default_args=args,
-    schedule_interval='@daily',
+    schedule_interval=None,
     dagrun_timeout=timedelta(minutes=60),
 )
 
